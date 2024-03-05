@@ -39,8 +39,6 @@ public class QuickSort {
             quickSort(a, low, pivIndex-1);                                     //recursive quick sort by using pivot index
             quickSort(a, pivIndex+1, high);
         }
-        
-        
     }
 
     public static void main(String[] args)

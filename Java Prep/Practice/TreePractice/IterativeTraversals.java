@@ -94,7 +94,6 @@ public class IterativeTraversals {
     {
         if(root==null) return;
         Stack<Node> st1 = new Stack<>();
-
     }
 
 
@@ -116,9 +115,7 @@ public class IterativeTraversals {
                 root = root.right;
             }
         }
-
     }
-
 
     public static void levelOrderTraversal(Node root)
     {
@@ -208,6 +205,17 @@ public class IterativeTraversals {
             }
         }
         return count;
+    }
+
+    public static Node findPath(Node root , int val ,List<Integer> l)
+    {
+        if(root==null) return null;
+        l.add(root.data);
+        if(root.data == val) return root;
+        Node left = findPath(root.left, val, l);
+        Node right = findPath(root.right, val, l);
+        return root;
+
     }
 }
 

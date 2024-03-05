@@ -1,5 +1,8 @@
 package Practice.TreePractice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Node
 {
     int data;
@@ -27,9 +30,15 @@ public class TreeTraversalsRecursion {
         System.out.println("\nInOrder is : ");
         inOrderTraversal(root);
         System.out.println("\nCount of Nodes is : "+countOfNodes(root));
-        
+        System.out.println("\nSum of All Nodes is : "+sumOfAllNodes(root));
+        int maxi = 0;
+        System.out.println("\nMaximum sum of Nodes is : "+maximumPathSum(root , maxi));
+        List<Integer> path = new ArrayList<>();
+        findPath(root, 17, path);
+        System.out.println("Path betwee root to node 19 is : "+path);
+    }
 
-        
+    private static void findPath(Node root, int i, List<Integer> path) {
     }
 
     public static Node buildTree(int[] nodes)
@@ -75,5 +84,31 @@ public class TreeTraversalsRecursion {
         return leftCount+rightCount+1;
     }
 
+    public static int sumOfAllNodes(Node root)
+    {
+        if(root==null) return 0;
+        int sum = root.data;
+        int leftSum = sumOfAllNodes(root.left);
+        int rightSum = sumOfAllNodes(root.right);
+        return sum+leftSum+rightSum;    
+    }
+
+    public static int maximumPathSum(Node root , int maxi)
+    {
+        if(root==null) return 0;
+        int leftSum = maximumPathSum(root.left, maxi);
+        int rightSum = maximumPathSum(root.right, maxi);
+        maxi = Math.max(maxi , leftSum+rightSum+root.data);             //Here we are updateding maximum path sum value according to each node subtree
+        //System.out.println(maxi);               //Maximum sum is 77 is gets rpinted when we executes this line
+        return root.data+Math.max(leftSum , rightSum);          // returning maximum path
+    }
+    
+
+    
+ 
+   
+
     
 }
+
+

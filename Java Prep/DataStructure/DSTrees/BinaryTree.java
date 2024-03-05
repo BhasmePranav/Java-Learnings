@@ -119,7 +119,8 @@ public class BinaryTree
         int rightDiam = diameter(root.right);
         int diamToRoot = height(root.left) + height(root.right)+1;
         return Math.max(diamToRoot , Math.max(leftDiam , rightDiam));
-
     }
+
+    
 }
 

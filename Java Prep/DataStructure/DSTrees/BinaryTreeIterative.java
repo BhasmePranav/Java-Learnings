@@ -15,12 +15,14 @@ public class BinaryTreeIterative {
         
         Node root = BuildTree(nodes);
         System.out.println("root is : "+root.data);
-        
         System.out.println("root is from Iterative : "+root.data);
         System.out.println("In order : "+inorder(root));
         System.out.println("Pre order : "+preorder(root));
         System.out.println("Post order : "+postorder(root));
-        
+        List<Integer> l = new ArrayList<>();
+        System.out.println("Element exist : "+findPath(root, 19,l)+"\nPath from root to Node 2 is : "+l);   
+        System.out.println("LCA of 9 and 19 is  : "+findLCA(root, 9, 19).data);
+        System.out.println("LCA of 2 and 3 is  : "+findLCA(root, 2, 3).data);
     }
 
     public static Node BuildTree(int[] nodes)
@@ -115,6 +117,30 @@ public class BinaryTreeIterative {
         while(!stack2.isEmpty()) l.add(stack2.pop().data);
         return l;
     }   
+
+    public static boolean findPath(Node root ,int target , List<Integer> l )
+    {
+        if(root==null) return false;
+        l.add(root.data);
+        if(root.data==target) return true;
+        if(findPath(root.left, target, l) || findPath(root.right, target, l))
+        {
+            return true;
+        }
+        System.out.println("Path from root to node is : "+l);
+        l.remove(l.size()-1);
+        return false;
+    }
+
+    public static Node findLCA(Node root , int p , int q)
+    {
+        if(root==null || root.data==p || root.data==q) return root;
+        Node left = findLCA(root.left, p, q);
+        Node right = findLCA(root.right, p, q);
+        if(left==null) return right;
+        if(right==null) return left;
+        else return root;
+    }
 }
 
 

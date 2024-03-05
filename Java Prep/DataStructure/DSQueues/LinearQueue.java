@@ -19,7 +19,7 @@ public class LinearQueue {
         }
     }
 
-    Node front;                         
+    Node front;                  
     Node rear;
 
     public boolean isEmpty()                    //checking queue is empty or not
